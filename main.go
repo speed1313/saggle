@@ -104,6 +104,20 @@ func analyze(text string) []string {
 	return tokens
 }
 
+type index map[string][]int
+
+func (idx index) add(docs []document) {
+	for _, doc := range docs {
+		for _, token := range analyze(doc.Text) {
+			ids := idx[token]
+			if ids != nil && ids[len(ids)-1] == doc.ID {
+				continue
+			}
+			idx[token] = append(ids, doc.ID)
+		}
+	}
+}
+
 func main() {
 	//docs, err := loadDocuments("enwiki-latest-abstract1.xml")
 	//if err != nil {
@@ -124,4 +138,8 @@ func main() {
 	fmt.Println(stem_tokens)
 	analyzed_tokens := analyze(text)
 	fmt.Printf("%v\n", analyzed_tokens)
+	idx := make(index)
+	idx.add([]document{{ID: 1, Text: "A donut on a glass plate. Only the donuts."}})
+	idx.add([]document{{ID: 2, Text: "donut is a donut"}})
+	fmt.Println(idx)
 }
