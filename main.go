@@ -80,6 +80,10 @@ func lowercaseFilter(tokens []string) []string {
 var stopwords = map[string]struct{}{
 	"a": {}, "and": {}, "be": {}, "have": {}, "i": {},
 	"in": {}, "of": {}, "that": {}, "the": {}, "to": {},
+	"is": {}, "it": {}, "for": {}, "an": {}, "as": {},
+	"at": {}, "by": {}, "from": {}, "he": {}, "on": {},
+	"or": {}, "this": {}, "was": {}, "were": {},
+	"with": {}, "are": {}, "but": {}, "not": {},
 }
 
 func stopwordFilter(tokens []string) []string {
