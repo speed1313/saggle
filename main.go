@@ -43,7 +43,7 @@ func loadDocuments(path string) ([]document, error) {
 	return docs, nil
 }
 
-func search(docs []document, term string) []document {
+func search_contain(docs []document, term string) []document {
 	var r []document
 	for _, doc := range docs {
 		if strings.Contains(doc.Text, term) {
